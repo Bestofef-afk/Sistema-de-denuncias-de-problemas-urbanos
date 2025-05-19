@@ -2,6 +2,7 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 
+
 export default function DenunciaFormulario() {
     const [opcao, setOpcao] = useState(null);
     const [tipoPessoa, setTipoPessoa] = useState('fisica');
@@ -9,6 +10,7 @@ export default function DenunciaFormulario() {
     const [endereco, setEndereco] = useState(null);
     const [erroCep, setErroCep] = useState("");
     const [mounted, setMounted] = useState(false);
+    const [imagem, setImagem] = useState(null);
 
     useEffect(() => {
         setMounted(true);
@@ -36,9 +38,25 @@ export default function DenunciaFormulario() {
         }
     }
 
-    function handleSubmit(e) {
+    async function handleSubmit(e) {
         e.preventDefault();
-        alert("Denúncia enviada com sucesso! (mock)");
+
+        const formData = new FormData();
+        formData.append('image', e.target.image.files[0]);
+        formData.append('endereco', e.target.endereco.value);
+        formData.append('bairro', e.target.bairro.value);
+        formData.append('descricao', e.target.descricao.value);
+        formData.append('cep', e.target.cep.value);
+        formData.append('rua', e.target.rua.value);
+        formData.append('numero', e.target.numero.value);
+        formData.append('idUsuario', e.target.idUsuario.value);
+
+        try {
+            const response = await axios.post('/api/denuncia', formData);
+            console.log(response.data);
+        } catch (error) {
+            console.error(error);
+        }
     }
 
     return (
@@ -164,11 +182,14 @@ export default function DenunciaFormulario() {
                 {/* Denúncia */}
                 <form onSubmit={handleSubmit} className="space-y-4">
                     <h3 className="text-xl font-semibold text-[#199950]">Descrição da Denúncia</h3>
-                    <textarea placeholder="Descreva o ocorrido com detalhes..." required className="w-full h-32 p-3 border border-[#E1E3DE] rounded-md focus:ring-2 focus:ring-[#11703B]"></textarea>
-                    <button type="submit" className="w-full bg-[#199950] hover:bg-[#11703B] text-white py-3 rounded-lg font-semibold">
-                        Enviar Denúncia
-                    </button>
+                    <textarea placeholder="Descreva o ocorrido com detalhes..." required className="w-full h-32 p-3 border border-[#E1E3DE] rounded-md focus:ring-2 focus:ring-[#11703B] text-gray-800"></textarea>
+                    <input type="file"accept="image/*" onChange={(e) => setImagem(e.target.files[0])}className="block w-full text-sm text-gray-700 border border-gray-300 rounded-lg cursor-pointer bg-gray-50"/>
+
+                    <button type="submit" className="bg-[#11703B] text-white px-4 py-2 rounded-lg font-semibold">
+                    Enviar Denuncia
+                </button>
                 </form>
+                
             </section>
         </main>
     );

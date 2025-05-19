@@ -26,23 +26,22 @@ CREATE TABLE denuncias (
   Bairro varchar(50) not null,
   descricao text not null,
   imgUrl varchar(255) not null,
-  cidade varchar(50) not null,
   CEP varchar(10) not null,
   Complemento varchar(10),
   idUsuario int,
   FOREIGN KEY (idUsuario) REFERENCES Usuario(idUsuario)
 );
 
-INSERT INTO denuncias (endereco, Bairro, descricao, imgUrl, cidade, CEP, Complemento, idUsuario) VALUES
-('Rua das Laranjeiras, 45', 'Jardins', 'Acúmulo de lixo na calçada há mais de uma semana.', '', 'São Paulo', '01415-002', 'Ap 101', 1),
+INSERT INTO denuncias (endereco, Bairro, descricao, imgUrl, CEP, Complemento, idUsuario) VALUES
+('Rua das Laranjeiras, 45', 'Jardins', 'Acúmulo de lixo na calçada há mais de uma semana.', '', '01415-002', 'Ap 101', 1),
 
-('Av. Copacabana, 200', 'Centro', 'Esgoto a céu aberto causando mau cheiro.', '', 'Rio de Janeiro', '22060-002', 'Sala 5', 2),
+('Av. Copacabana, 200', 'Centro', 'Esgoto a céu aberto causando mau cheiro.', '', '22060-002', 'Sala 5', 2),
 
-('Rua do Cruzeiro, 55', 'Savassi', 'Poste com fiação exposta, risco de choque.', '', 'Belo Horizonte', '30140-080', 'Casa', 3),
+('Rua do Cruzeiro, 55', 'Savassi', 'Poste com fiação exposta, risco de choque.', '','30140-080', 'Casa', 3),
 
-('Av. das Palmeiras, 987', 'Zona Sul', 'Buraco grande na via causando acidentes.', '', 'Porto Alegre', '90630-000', 'Fundos', 4),
+('Av. das Palmeiras, 987', 'Zona Sul', 'Buraco grande na via causando acidentes.', '', '90630-000', 'Fundos', 4),
 
-('Rua Goiás, 1234', 'Setor Oeste', 'Vazamento de água constante na calçada.', '', 'Goiânia', '74120-090', 'Ap 804', 5);
+('Rua Goiás, 1234', 'Setor Oeste', 'Vazamento de água constante na calçada.', '', '74120-090', 'Ap 804', 5);
 
 
 

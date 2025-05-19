@@ -32,8 +32,8 @@ apiRouter.use(upload.single("image"));
 
 //criando a rota para a api
 apiRouter.post(async (req, res) => {
-    const { endereco, Bairro, descricao, cidade, cep, rua, numero, idUsuario } = req.body;
-    if (!endereco || !Bairro || !descricao || !cidade || !cep || !rua || !numero || !idUsuario) {
+    const { endereco, Bairro, descricao, cep, rua, numero, idUsuario } = req.body;
+    if (!endereco || !Bairro || !descricao || !cep || !rua || !numero || !idUsuario) {
         return res.status(400).json({ error: "Todos os campos sao obrigatorios" });
     }
 
@@ -41,8 +41,8 @@ apiRouter.post(async (req, res) => {
 
     try {
         const [result] = await db.query(
-            "INSERT INTO denuncias (endereco, Bairro, descricao, imgUrl, cidade, cep, rua, numero, idUsuario) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)",
-            [endereco, Bairro, descricao, imageUrl, cidade, cep, rua, numero, idUsuario]
+            "INSERT INTO denuncias (endereco, Bairro, descricao, imgUrl, cep, rua, numero, idUsuario) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)",
+            [endereco, Bairro, descricao, imageUrl, cep, rua, numero, idUsuario]
         );
         const idDenuncia = result.insertId;
         return res.status(201).json({ menssage: "Denuncia registrada com sucesso", idDenuncia: idDenuncia });
