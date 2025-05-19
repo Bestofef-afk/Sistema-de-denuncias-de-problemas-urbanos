@@ -1,38 +1,71 @@
 'use client';
-import { useState } from 'react';
+import { useState, useEffect } from "react";
+import axios from "axios";
 
-function cadastro() {
+export default function DenunciaFormulario() {
     const [opcao, setOpcao] = useState(null);
     const [tipoPessoa, setTipoPessoa] = useState('fisica');
+    const [cep, setCep] = useState("");
+    const [endereco, setEndereco] = useState(null);
+    const [erroCep, setErroCep] = useState("");
+    const [mounted, setMounted] = useState(false);
+
+    useEffect(() => {
+        setMounted(true);
+    }, []);
+
+    async function buscarCep(e) {
+        e.preventDefault();
+        setErroCep("");
+        setEndereco(null);
+
+        if (!cep.match(/^\d{8}$/)) {
+            setErroCep("Digite um CEP válido com 8 dígitos.");
+            return;
+        }
+
+        try {
+            const res = await axios.get(`https://viacep.com.br/ws/${cep}/json/`);
+            if (res.data.erro) {
+                setErroCep("CEP não encontrado.");
+            } else {
+                setEndereco(res.data);
+            }
+        } catch (err) {
+            setErroCep("Erro ao buscar o CEP.");
+        }
+    }
+
+    function handleSubmit(e) {
+        e.preventDefault();
+        alert("Denúncia enviada com sucesso! (mock)");
+    }
 
     return (
-        <div className="min-h-screen bg-[#F7F6F2] text-[#1C1C1C] flex flex-col items-center p-6">
-            <div className="max-w-xl w-full bg-white p-6 rounded-2xl shadow-md">
-                <h2 className="text-2xl font-bold text-[#11703B] mb-4">Escolha uma opção:</h2>
-                <div className="flex gap-4 mb-6">
+        <main className="min-h-screen bg-[#f4f4f4] flex flex-col items-center p-6">
+            <section className="max-w-3xl w-full bg-white p-6 rounded-2xl shadow-md space-y-8">
+                <h2 className="text-3xl font-bold text-[#11703B] text-center">Formulário de Denúncia</h2>
+
+                {/* Escolha de Opção */}
+                <div className="flex gap-4">
                     <button
-                        className={`flex-1 py-2 px-4 rounded-lg font-semibold ${opcao === 'cadastro'
-                            ? 'bg-[#11703B] text-white'
-                            : 'bg-[#E1E3DE] text-[#1C1C1C]'
-                            }`}
+                        className={`flex-1 py-2 px-4 rounded-lg font-semibold ${opcao === 'cadastro' ? 'bg-[#11703B] text-white' : 'bg-[#E1E3DE] text-[#1C1C1C]'}`}
                         onClick={() => setOpcao('cadastro')}
                     >
                         Cadastro completo
                     </button>
                     <button
-                        className={`flex-1 py-2 px-4 rounded-lg font-semibold ${opcao === 'anonimo'
-                            ? 'bg-[#11703B] text-white'
-                            : 'bg-[#E1E3DE] text-[#1C1C1C]'
-                            }`}
+                        className={`flex-1 py-2 px-4 rounded-lg font-semibold ${opcao === 'anonimo' ? 'bg-[#11703B] text-white' : 'bg-[#E1E3DE] text-[#1C1C1C]'}`}
                         onClick={() => setOpcao('anonimo')}
                     >
                         Envio anônimo
                     </button>
                 </div>
 
+                {/* Formulário de Cadastro */}
                 {opcao === 'cadastro' && (
-                    <form className="flex flex-col gap-4">
-                        <h3 className="text-xl font-semibold text-[#199950]">Formulário de Cadastro</h3>
+                    <div className="space-y-4">
+                        <h3 className="text-xl font-semibold text-[#199950]">Seus dados</h3>
 
                         <div className="flex gap-4">
                             <label className="flex items-center gap-2">
@@ -45,7 +78,6 @@ function cadastro() {
                                 />
                                 Pessoa Física
                             </label>
-
                             <label className="flex items-center gap-2">
                                 <input
                                     type="radio"
@@ -58,103 +90,86 @@ function cadastro() {
                             </label>
                         </div>
 
-                        <label className="flex flex-col">
-                            Nome completo:
-                            <input type="text" name="nome" required className="w-full p-2 border border-[#E1E3DE] rounded-md bg-white text-[#1C1C1C] placeholder:text-[#444444] focus:outline-none focus:ring-2 focus:ring-[#11703B] transition" />
-                        </label>
+                        <input type="text" placeholder="Nome completo" required className="input-field text-gray-800" />
+                        <input type="email" placeholder="Email" required className="input-field text-gray-800" />
 
-                        <label className="flex flex-col">
-                            Email:
-                            <input type="email" name="email" required className="w-full p-2 border border-[#E1E3DE] rounded-md bg-white text-[#1C1C1C] placeholder:text-[#444444] focus:outline-none focus:ring-2 focus:ring-[#11703B] transition" />
-                        </label>
-
-                        {tipoPessoa === 'fisica' && (
-                            <label className="flex flex-col">
-                                CPF:
-                                <input
-                                    type="text"
-                                    name="cpf"
-                                    maxLength="14"
-                                    pattern="\d{3}\.?\d{3}\.?\d{3}-?\d{2}"
-                                    placeholder="000.000.000-00"
-                                    required
-                                    className="input-field"
-                                />
-                            </label>
+                        {tipoPessoa === 'fisica' ? (
+                            <input type="text" placeholder="CPF (000.000.000-00)" pattern="\d{3}\.?\d{3}\.?\d{3}-?\d{2}" required className="input-field text-gray-800" />
+                        ) : (
+                            <input type="text" placeholder="CNPJ (00.000.000/0000-00)" pattern="\d{2}\.?\d{3}\.?\d{3}/?\d{4}-?\d{2}" required className="input-field text-gray-800" />
                         )}
 
-                        {tipoPessoa === 'juridica' && (
-                            <label className="flex flex-col">
-                                CNPJ:
-                                <input
-                                    type="text"
-                                    name="cnpj"
-                                    maxLength="18"
-                                    pattern="\d{2}\.?\d{3}\.?\d{3}/?\d{4}-?\d{2}"
-                                    placeholder="00.000.000/0000-00"
-                                    required
-                                    className="input-field"
-                                />
-                            </label>
-                        )}
-
-                        <label className="flex flex-col">
-                            Telefone:
-                            <input
-                                type="tel"
-                                name="telefone"
-                                pattern="\(?\d{2}\)?\s?\d{4,5}-?\d{4}"
-                                placeholder="(00) 00000-0000"
-                                required
-                                className="w-full p-2 border border-[#E1E3DE] rounded-md bg-white text-[#1C1C1C] placeholder:text-[#444444] focus:outline-none focus:ring-2 focus:ring-[#11703B] transition"
-                            />
-                        </label>
-
-                        <label className="flex flex-col">
-                            Data de nascimento:
-                            <input type="date" name="dataNascimento" required className="w-full p-2 border border-[#E1E3DE] rounded-md bg-white text-[#1C1C1C] placeholder:text-[#444444] focus:outline-none focus:ring-2 focus:ring-[#11703B] transition" />
-                        </label>
-
-                        <label className="flex flex-col">
-                            Sexo:
-                            <select name="sexo" required className="input-field">
-                                <option value="" disabled selected>
-                                    Selecione
-                                </option>
-                                <option value="feminino">Feminino</option>
-                                <option value="masculino">Masculino</option>
-                                <option value="outro">Outro</option>
-                            </select>
-                        </label>
-
-                        <button
-                            type="submit"
-                            className="mt-4 bg-[#199950] hover:bg-[#11703B] text-white py-2 px-4 rounded-lg font-semibold"
-                        >
-                            Enviar
-                        </button>
-                    </form>
+                        <input type="tel" placeholder="Telefone (00) 00000-0000" pattern="\(?\d{2}\)?\s?\d{4,5}-?\d{4}" required className="input-field text-gray-800" />
+                        <input type="date" required className="input-field text-gray-800" />
+                        <select required className="input-field text-gray-800">
+                            <option value="sexo" disabled selected>Sexo</option>
+                            <option value="feminino">Feminino</option>
+                            <option value="masculino">Masculino</option>
+                            <option value="outro">Outro</option>
+                        </select>
+                    </div>
                 )}
 
+                {/* Aviso para envio anônimo */}
                 {opcao === 'anonimo' && (
                     <div className="text-center">
                         <h3 className="text-xl font-semibold text-[#199950] mb-2">Envio Anônimo</h3>
-                        <p className="text-[#444444] mb-4">Você tem certeza que não quer se cadastrar?</p>
-                        <div className="flex gap-4 justify-center">
-                            <button
-                                onClick={() => setOpcao('cadastro')}
-                                className="bg-[#E1E3DE] hover:bg-[#D9A700] text-[#1C1C1C] font-semibold py-2 px-4 rounded-lg"
-                            >
-                                Me cadastrar
-                            </button>
-                            <button className="bg-[#11703B] hover:bg-[#0d5a30] text-white font-semibold py-2 px-4 rounded-lg">
-                                Seguir anonimamente
-                            </button>
-                        </div>
+                        <p className="text-[#444444] mb-4">Você continuará sem se identificar.</p>
                     </div>
                 )}
-            </div>
-        </div>
+
+                {/* Seção do CEP */}
+                <div className="space-y-4">
+                    <h3 className="text-xl font-semibold text-[#199950]">Local do fato</h3>
+                    <form onSubmit={buscarCep} className="flex gap-4">
+                        <input
+                            type="text"
+                            placeholder="CEP (somente números)"
+                            value={cep}
+                            onChange={(e) => setCep(e.target.value)}
+                            className="input-field flex-grow"
+                            maxLength={8}
+                            pattern="\d{8}"
+                            inputMode="numeric"
+                            autoComplete="off"
+                        />
+                        <button type="submit" className="bg-[#11703B] text-white px-4 py-2 rounded-lg font-semibold">
+                            Buscar
+                        </button>
+                    </form>
+                    {erroCep && <p className="text-[#C0392B]">{erroCep}</p>}
+
+                    {endereco && (
+                        <div className="bg-gray-50 rounded-lg p-4 shadow-inner space-y-2">
+                            <p><strong>Rua:</strong> {endereco.logradouro || "—"}</p>
+                            <p><strong>Bairro:</strong> {endereco.bairro || "—"}</p>
+                            <p><strong>Cidade:</strong> {endereco.localidade || "—"}</p>
+                            <p><strong>Estado:</strong> {endereco.uf || "—"}</p>
+                        </div>
+                    )}
+
+                    {mounted && endereco && (
+                        <iframe
+                            title="Mapa do endereço"
+                            width="100%"
+                            height="300"
+                            style={{ border: 0 }}
+                            loading="lazy"
+                            allowFullScreen
+                            src={`https://maps.google.com/maps?q=${encodeURIComponent(`${endereco.logradouro}, ${endereco.bairro}, ${endereco.localidade}, ${endereco.uf}`)}&output=embed`}
+                        />
+                    )}
+                </div>
+
+                {/* Denúncia */}
+                <form onSubmit={handleSubmit} className="space-y-4">
+                    <h3 className="text-xl font-semibold text-[#199950]">Descrição da Denúncia</h3>
+                    <textarea placeholder="Descreva o ocorrido com detalhes..." required className="w-full h-32 p-3 border border-[#E1E3DE] rounded-md focus:ring-2 focus:ring-[#11703B]"></textarea>
+                    <button type="submit" className="w-full bg-[#199950] hover:bg-[#11703B] text-white py-3 rounded-lg font-semibold">
+                        Enviar Denúncia
+                    </button>
+                </form>
+            </section>
+        </main>
     );
 }
-export default cadastro;
