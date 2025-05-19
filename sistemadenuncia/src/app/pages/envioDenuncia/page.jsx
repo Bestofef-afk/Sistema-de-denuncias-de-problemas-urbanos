@@ -75,19 +75,19 @@ function envioDenuncia() {
                             Resultado do Endereço
                         </h2>
                         <p>
-                            <strong>Rua:</strong> {endereco.logradouro || "—"}
+                            <strong>Rua:</strong> {endereco.logradouro}
                         </p>
                         <p>
-                            <strong>Bairro:</strong> {endereco.bairro || "—"}
+                            <strong>Bairro:</strong> {endereco.bairro}
                         </p>
                         <p>
-                            <strong>Cidade:</strong> {endereco.localidade || "—"}
+                            <strong>Cidade:</strong> {endereco.localidade}
                         </p>
                         <p>
-                            <strong>Estado:</strong> {endereco.uf || "—"}
+                            <strong>Estado:</strong> {endereco.uf}
                         </p>
                         <p>
-                            <strong>CEP:</strong> {endereco.cep || "—"}
+                            <strong>CEP:</strong> {endereco.cep}
                         </p>
                     </article>
                 )}

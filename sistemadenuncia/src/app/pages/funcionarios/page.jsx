@@ -5,7 +5,7 @@ function funcionario() {
             cargo: "Secretária de Saúde",
             horarioInicio: "08:00",
             horarioFim: "17:00",
-            localAtendimento: "Secretaria Municipal de Saúde",
+            localAtendimento: "Av. da Prevenção, nº 100 – Prédio da Vacina",
             telefone: "(66) 99999-1234",
             emailGovernamental: "ana.souza@vilanovanorte.gov",
             fotoUrl: "secretariaSaude.png"
@@ -15,7 +15,7 @@ function funcionario() {
             cargo: "Chefe de Gabinete",
             horarioInicio: "07:30",
             horarioFim: "16:30",
-            localAtendimento: "Gabinete do Prefeito",
+            localAtendimento: "Rua dos Bastidores, nº 12 – Sala do Poder Oculto",
             telefone: "(66) 99800-0001",
             emailGovernamental: "carlos.lima@vilanovanorte.gov",
             fotoUrl: "chefeGabinete.jpg"
@@ -25,7 +25,7 @@ function funcionario() {
             cargo: "Diretora de Educação",
             horarioInicio: "08:00",
             horarioFim: "17:00",
-            localAtendimento: "Secretaria de Educação",
+            localAtendimento: "Rua do Giz, nº 45 – Prédio das Ideias",
             telefone: "(66) 99888-1122",
             emailGovernamental: "maria.costa@vilanovanorte.gov",
             fotoUrl: "diretoraEducacao.jpg"
@@ -35,7 +35,7 @@ function funcionario() {
             cargo: "Engenheiro Civil",
             horarioInicio: "07:00",
             horarioFim: "16:00",
-            localAtendimento: "Departamento de Obras",
+            localAtendimento: "Av. das Obras, nº 999 – Bloco do Concreto",
             telefone: "(66) 99777-2233",
             emailGovernamental: "joao.almeida@vilanovanorte.gov",
             fotoUrl: "engenheiroCivil.png"
@@ -45,7 +45,7 @@ function funcionario() {
             cargo: "Assistente Social",
             horarioInicio: "08:00",
             horarioFim: "17:00",
-            localAtendimento: "CRAS Central",
+            localAtendimento: "Rua da Empatia, nº 202 – Casa do Coração Aberto",
             telefone: "(66) 99111-0000",
             emailGovernamental: "luciana.ribeiro@vilanovanorte.gov",
             fotoUrl: "assistenteSocial.png"
@@ -55,7 +55,7 @@ function funcionario() {
             cargo: "Fiscal de Obras",
             horarioInicio: "06:30",
             horarioFim: "15:30",
-            localAtendimento: "Secretaria de Urbanismo",
+            localAtendimento: "Rua do Piso Torto, nº 13 – Fiscalização Total",
             telefone: "(66) 99666-4455",
             emailGovernamental: "roberto.silva@vilanovanorte.gov",
             fotoUrl: "fiscalObra.jpg"
@@ -65,7 +65,7 @@ function funcionario() {
             cargo: "Técnica de Enfermagem",
             horarioInicio: "13:00",
             horarioFim: "22:00",
-            localAtendimento: "Posto de Saúde Central",
+            localAtendimento: "Av. do Curativo, nº 88 – Sala da Agulhinha",
             telefone: "(66) 99555-6677",
             emailGovernamental: "beatriz.martins@vilanovanorte.gov",
             fotoUrl: "tecnicaEnfermagem.jpg"
@@ -75,7 +75,7 @@ function funcionario() {
             cargo: "Motorista da Saúde",
             horarioInicio: "06:00",
             horarioFim: "14:00",
-            localAtendimento: "Garagem da Secretaria de Saúde",
+            localAtendimento: "Rua dos Ônibus, nº 343 – Ponto Final da Saúde",
             telefone: "(66) 99100-1234",
             emailGovernamental: "eduardo.ramos@vilanovanorte.gov",
             fotoUrl: "motoristaSaude.png"
@@ -85,7 +85,7 @@ function funcionario() {
             cargo: "Professora de Educação Infantil",
             horarioInicio: "07:00",
             horarioFim: "12:00",
-            localAtendimento: "CMEI Pequeno Aprendiz",
+            localAtendimento: "Rua dos Pequenos Gênios, nº 10 – Sala do Giz Colorido",
             telefone: "(66) 99444-7788",
             emailGovernamental: "juliana.neves@vilanovanorte.gov",
             fotoUrl: "professorainfantil.jpg"
@@ -95,7 +95,7 @@ function funcionario() {
             cargo: "Vigilante",
             horarioInicio: "18:00",
             horarioFim: "06:00",
-            localAtendimento: "Prefeitura Municipal",
+            localAtendimento: "Rua do Olho Vivo, nº 007 – Posto do Sussurro",
             telefone: "(66) 99333-8899",
             emailGovernamental: "marcos.ferreira@vilanovanorte.gov",
             fotoUrl: "vigilante.png"
@@ -105,7 +105,7 @@ function funcionario() {
             cargo: "Recepcionista",
             horarioInicio: "08:00",
             horarioFim: "17:00",
-            localAtendimento: "Atendimento ao Cidadão",
+            localAtendimento: "Av. do Bom Dia, nº 1 – Balcão do Sorriso",
             telefone: "(66) 99123-4567",
             emailGovernamental: "vanessa.duarte@vilanovanorte.gov",
             fotoUrl: "recepcionista.jpg"
@@ -115,7 +115,7 @@ function funcionario() {
             cargo: "Contador",
             horarioInicio: "07:00",
             horarioFim: "16:00",
-            localAtendimento: "Secretaria de Finanças",
+            localAtendimento: "Rua da Calculadora, nº 123 – Prédio dos Números Certos",
             telefone: "(66) 99001-1111",
             emailGovernamental: "andre.barros@vilanovanorte.gov",
             fotoUrl: "contador.png"
@@ -125,7 +125,7 @@ function funcionario() {
             cargo: "Coordenadora Pedagógica",
             horarioInicio: "08:00",
             horarioFim: "17:00",
-            localAtendimento: "Secretaria de Educação",
+            localAtendimento: "Rua do Planejamento Escolar, nº 404 – Sala da Lousa Estratégica",
             telefone: "(66) 99777-3344",
             emailGovernamental: "patricia.gomes@vilanovanorte.gov",
             fotoUrl: "coordenadora.jpg"
@@ -135,7 +135,7 @@ function funcionario() {
             cargo: "Zelador",
             horarioInicio: "06:00",
             horarioFim: "14:00",
-            localAtendimento: "Escola Municipal Aurora",
+            localAtendimento: "Rua da Vassoura, nº 33 – Cantinho do Capricho",
             telefone: "(66) 99400-0011",
             emailGovernamental: "diego.santos@vilanovanorte.gov",
             fotoUrl: "zelador.png"
@@ -145,7 +145,7 @@ function funcionario() {
             cargo: "Psicóloga",
             horarioInicio: "08:00",
             horarioFim: "17:00",
-            localAtendimento: "Centro de Atendimento Psicossocial (CAPS)",
+            localAtendimento: "Alameda da Mente, nº 222 – Consultório da Escuta Ativa",
             telefone: "(66) 99887-7654",
             emailGovernamental: "sandra.mello@vilanovanorte.gov",
             fotoUrl: "psicologa.png"
@@ -155,7 +155,7 @@ function funcionario() {
             cargo: "Técnico de Informática",
             horarioInicio: "07:30",
             horarioFim: "16:30",
-            localAtendimento: "Centro de Processamento de Dados",
+            localAtendimento: "Av. do Wi-Fi, nº 404 – Sala do Reboot",
             telefone: "(66) 99111-2222",
             emailGovernamental: "fabio.nascimento@vilanovanorte.gov",
             fotoUrl: "tecnicoinformatica.jpg"
@@ -165,7 +165,7 @@ function funcionario() {
             cargo: "Arquiteta",
             horarioInicio: "08:00",
             horarioFim: "17:00",
-            localAtendimento: "Secretaria de Planejamento",
+            localAtendimento: "Rua dos Projetos, nº 88 – Torre da Criatividade",
             telefone: "(66) 99222-3344",
             emailGovernamental: "larissa.freitas@vilanovanorte.gov",
             fotoUrl: "arquiteta.png"
@@ -175,7 +175,7 @@ function funcionario() {
             cargo: "Agente de Fiscalização",
             horarioInicio: "07:00",
             horarioFim: "16:00",
-            localAtendimento: "Posto Fiscal",
+            localAtendimento: "Av. da Multa Justa, nº 300 – Posto do Apito",
             telefone: "(66) 99000-4455",
             emailGovernamental: "henrique.castro@vilanovanorte.gov",
             fotoUrl: "agentefiscalizacao.png"
@@ -185,7 +185,7 @@ function funcionario() {
             cargo: "Secretária Executiva",
             horarioInicio: "08:00",
             horarioFim: "17:00",
-            localAtendimento: "Gabinete do Vice-Prefeito",
+            localAtendimento: "Rua dos Recados, nº 9 – Sala da Agenda Lotada",
             telefone: "(66) 99002-9999",
             emailGovernamental: "tatiane.lima@vilanovanorte.gov",
             fotoUrl: "secretariaExecutiva.jpg"
@@ -195,7 +195,7 @@ function funcionario() {
             cargo: "Instrutor de Esportes",
             horarioInicio: "13:00",
             horarioFim: "21:00",
-            localAtendimento: "Ginásio Municipal",
+            localAtendimento: "Av. do Esforço, nº 90 – Ginásio do Suor",
             telefone: "(66) 99888-1010",
             emailGovernamental: "bruno.oliveira@vilanovanorte.gov",
             fotoUrl: "instrutorEsportes.png"
