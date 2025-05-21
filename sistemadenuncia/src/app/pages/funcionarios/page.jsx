@@ -237,7 +237,7 @@ export default function Funcionario() {
             } else {
                 container.scrollBy({ left: 320, behavior: 'smooth' });
             }
-        }, 2000);
+        }, 3000);
 
         return () => clearInterval(intervalo);
     }, []);
