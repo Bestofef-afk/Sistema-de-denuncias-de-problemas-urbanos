@@ -1,4 +1,7 @@
-function funcionario() {
+'use client';
+import { useEffect, useRef, useState } from 'react';
+
+export default function Funcionario() {
     const funcionarios = [
         {
             nome: "Ana Paula Souza",
@@ -202,36 +205,113 @@ function funcionario() {
         }
     ];
 
+    const carrosselRef = useRef(null);
+    const [activeIndex, setActiveIndex] = useState(0);
 
+    const itemWidth = 300;
+
+    function bolhinas() {
+        const container = carrosselRef.current;
+        if (!container) return;
+
+        const index = Math.round(container.scrollLeft / itemWidth);
+        setActiveIndex(index);
+    }
+
+    function goToIndex(index) {
+        if (!carrosselRef.current) return;
+        carrosselRef.current.scrollTo({
+            left: index * itemWidth, behavior: 'smooth'
+        });
+    }
+
+    useEffect(() => {
+        const intervalo = setInterval(() => {
+            const container = carrosselRef.current;
+            if (!container) return;
+
+            const maxScroll = container.scrollWidth - container.clientWidth;
+
+            if (container.scrollLeft >= maxScroll) {
+                container.scrollTo({ left: 0, behavior: 'smooth' });
+            } else {
+                container.scrollBy({ left: 320, behavior: 'smooth' });
+            }
+        }, 2000);
+
+        return () => clearInterval(intervalo);
+    }, []);
 
     return (
-        <>
-            <div className="container mx-auto px-4 py-8 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-10">
+
+        <div
+            className="w-full overflow-hidden px-4 sm:px-6 py-12 bg-[#F7F6F2]"
+            role="region"
+            aria-label="Carrossel de funcionários"
+        >
+            <h2
+                className="text-2xl sm:text-3xl font-bold text-[#11703B] mb-5 sm:mb-8 tracking-tight"
+            >
+                Funcionários
+            </h2>
+            {/* Carrossel */}
+            <div
+                ref={carrosselRef}
+                className="flex space-x-4 sm:space-x-6 overflow-x-auto scroll-smooth snap-x snap-mandatory no-scrollbar"
+                onScroll={bolhinas}
+            >
                 {funcionarios.map((func, index) => (
                     <div
                         key={index}
-                        className="bg-white rounded-2xl shadow-md p-4 flex flex-col items-center text-center transition-transform hover:scale-105 duration-300"
+                        className="w-[260px] sm:w-[280px] h-[420px] rounded-2xl p-6 flex flex-col items-center text-center flex-shrink-0 bg-[#E1E3DE] shadow-sm transition-transform hover:scale-[1.02] snap-center"
                     >
                         <img
                             src={`../img/${func.fotoUrl}`}
-                            alt={func.nome}
-                            className="w-24 h-24 rounded-full object-cover mb-4 border-4 border-green-700"
+                            alt={`Foto de ${func.nome}`}
+                            className="w-28 h-28 rounded-full object-cover mb-5 border-4 border-[#11703B]"
                         />
-                        <h3 className="text-lg font-semibold text-green-900">{func.cargo}</h3>
-                        <p className="text-sm text-gray-800">{func.nome}</p>
-                        <p className="text-sm text-gray-600">{func.horarioInicio} às {func.horarioFim}</p>
-                        <p className="text-sm text-gray-600">{func.localAtendimento}</p>
-                        <a
-                            className="text-sm text-green-800 underline mt-2"
-                            href={`mailto:${func.emailGovernamental}?subject='Denúncia de Irregularidade em Vial Nova do Norte'&body=Venho por meio deste, de forma formal, apresentar uma denúncia referente a uma situação que demanda a atenção urgente das autoridades municipais de Vial Nova do Norte. Trata-se de`}
+                        <h3
+                            className="text-xl font-semibold mb-2 text-[#11703B]"
                         >
-                            Enviar e-mail para {func.emailGovernamental}
+                            {func.cargo}
+                        </h3>
+                        <p
+                            className="text-base font-medium mb-3 text-[#1C1C1C]"
+                        >
+                            {func.nome}
+                        </p>
+                        <p className="text-sm mb-2 text-[#444444]">
+                            {func.horarioInicio} às {func.horarioFim}
+                        </p>
+                        <p className="text-sm mb-2 text-[#444444]">
+                            {func.localAtendimento}
+                        </p>
+                        <p className="text-sm mb-4 text-[#444444]">
+                            {func.telefone}
+                        </p>
+                        <a
+                            href={`mailto:${func.emailGovernamental}?subject=Denúncia de Irregularidade&body=Venho por meio deste...`}
+                            className="text-sm font-medium text-[#199950] underline hover:text-[#11703B] transition-colors duration-200 mt-auto"
+                        >
+                            Enviar e-mail
                         </a>
                     </div>
                 ))}
             </div>
-        </>
-    );
 
+            {/* Bolinhas do carrossel */}
+            <div className="flex justify-center mt-8 space-x-3">
+                {funcionarios.map((_, index) => (
+                    <button
+                        key={index}
+                        onClick={() => goToIndex(index)}
+                        className={`w-3 h-3 sm:w-4 sm:h-4 rounded-full cursor-pointer transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-[#199950] ${activeIndex === index ? 'bg-[#199950] scale-125' : 'bg-[#11703B]'
+                            }`}
+                        aria-label={`Ir para funcionário ${index + 1}`}
+                        aria-current={activeIndex === index ? 'true' : 'false'}
+                    />
+                ))}
+            </div>
+        </div>
+    );
 }
-export default funcionario;

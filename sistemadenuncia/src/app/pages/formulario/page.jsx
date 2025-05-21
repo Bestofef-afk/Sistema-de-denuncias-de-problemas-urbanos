@@ -1,6 +1,5 @@
 'use client';
-import { useState, useEffect } from "react";
-import axios from "axios";
+import { useState } from 'react';
 
 export default function FormularioDenuncia() {
   const [nome, setNome] = useState("");
