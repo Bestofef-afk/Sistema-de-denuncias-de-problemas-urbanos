@@ -43,9 +43,8 @@ CREATE TABLE denuncia (
   nome varchar(50),
   email varchar(50),
   CPF varchar(50),
-  CPF varchar(50),
   telefone varchar(50),
-  nasciData date,
+  dataEnvio date,
   endereco varchar(150) not null,
   bairro varchar(50) not null,
   descricao text not null,
@@ -54,17 +53,13 @@ CREATE TABLE denuncia (
   complemento varchar(10)
 );
 
-INSERT INTO denuncia (nome, email, CPF, telefone, nasciData, endereco, bairro, descricao, imgUrl, CEP, complemento)
+INSERT INTO denuncia (nome, email, CPF, telefone, dataEnvio, endereco, bairro, descricao, imgUrl, CEP, complemento)
 VALUES 
-('João Silva', 'joao.silva@example.com', 12345678900, 11987654321, '1990-05-12', 'Rua das Flores, 123', 'Centro', 'Lixo acumulado em terreno baldio.', 'uploads/lixo1.jpg', '01234-567', 'Casa 1'),
+('João Silva', 'joao.silva@email.com', '123.456.789-00', '(11) 99999-1234', '2025-05-21', 'Rua das Flores, 123', 'Centro', 'Denúncia de descarte irregular de lixo.', 'uploads/imagem1.jpg', '12345678', 'Apt 101'),
 
-('Maria Oliveira', 'maria.oliveira@example.com', 98765432100, 21987654321, '1985-10-30', 'Av. Brasil, 456', 'Jardim das Palmeiras', 'Esgoto a céu aberto próximo a escola.', 'uploads/esgoto.jpg', '76543-210', 'Ap 202'),
+('Maria Oliveira', 'maria.oliveira@email.com', '987.654.321-00', '(21) 98888-4321', '2025-05-20', 'Av. Brasil, 456', 'Jardins', 'Denúncia de poluição sonora constante.', 'uploads/imagem2.jpg', '87654321', 'Casa'),
 
-('Carlos Souza', 'carlos.souza@example.com', 11223344556, 31912345678, '1978-03-22', 'Travessa dos Lírios, 89', 'Vila Nova', 'Árvore caída obstruindo a rua.', 'uploads/arvore.jpg', '09876-543', ''),
-
-('Ana Martins', 'ana.martins@example.com', 66778899001, 47987651234, '1995-07-08', 'Rua do Sol, 789', 'São Pedro', 'Vazamento de água em calçada pública.', 'uploads/vazamento.jpg', '12345-678', NULL),
-
-('Felipe Lima', 'felipe.lima@example.com', 33445566778, 51999887766, '2000-11-19', 'Alameda Santos, 321', 'Boa Vista', 'Moradores fazendo queima de lixo.', 'uploads/queima.jpg', '98765-432', 'Fundos');
+('Carlos Souza', 'carlos.souza@email.com', '321.654.987-00', '(31) 97777-5678', '2025-05-19', 'Rua do Sol, 789', 'Vila Nova', 'Denúncia de maus tratos a animais.', 'uploads/imagem3.jpg', '11223344', 'Fundos');
 
 drop database sistemaDenuncias;
 
@@ -73,4 +68,5 @@ select * from denuncia;
 alter table denuncia 
 modify column CPF bigint,
 modify column telefone bigint;
+
 
