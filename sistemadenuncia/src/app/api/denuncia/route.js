@@ -37,7 +37,7 @@ export async function POST(req) {
       `INSERT INTO denuncia 
         (nome, email, CPF, telefone, dataEnvio, endereco, bairro, descricao, imgUrl, CEP, complemento) 
        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
-      [nome || null, email || null, CPF || null, telefone || null, dataEnvio, endereco, bairro, descricao, imageUrl, cep, complemento || null]
+      [nome,  email, CPF, telefone, dataEnvio, endereco, bairro, descricao, imageUrl, cep, complemento || null]
     );
 
     return NextResponse.json(
