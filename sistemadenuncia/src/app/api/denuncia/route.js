@@ -1,6 +1,7 @@
-// app/api/denuncia/route.js
-
 import { NextResponse } from 'next/server';
+import path from 'path';
+import fs from 'fs';
+import { writeFile } from 'fs/promises';
 import db from '../../../../lib/db';
 
 export async function POST(req) {
@@ -8,15 +9,25 @@ export async function POST(req) {
     const data = await req.formData();
     const file = data.get('image');
 
-    // Verificações básicas
     if (!file || typeof file === 'string') {
       return NextResponse.json({ error: 'Imagem inválida.' }, { status: 400 });
     }
 
-    // Gera um nome de arquivo fictício (não salva no disco)
     const ext = file.name.split('.').pop();
     const filename = `${Date.now()}-${Math.random().toString(36).substring(2, 9)}.${ext}`;
-    const imageUrl = `/uploads/${filename}`; // caminho fictício
+    const imageUrl = `/uploads/${filename}`;
+
+    // Salva a imagem fisicamente
+    const bytes = await file.arrayBuffer();
+    const buffer = Buffer.from(bytes);
+    const uploadDir = path.join(process.cwd(), 'public/uploads');
+
+    if (!fs.existsSync(uploadDir)) {
+      fs.mkdirSync(uploadDir, { recursive: true });
+    }
+
+    const filePath = path.join(uploadDir, filename);
+    await writeFile(filePath, buffer);
 
     const dataEnvio = data.get('dataEnvio');
     const nome = data.get('nome');

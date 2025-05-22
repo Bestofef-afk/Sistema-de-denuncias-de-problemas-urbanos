@@ -90,7 +90,7 @@ export default function FormularioDenuncia() {
 
             <input type="text" placeholder="Nome completo" required className="input-field text-gray-800" value={nome} onChange={(e) => setNome(e.target.value)} />
             <input type="email" placeholder="Email" required className="input-field text-gray-800" value={email} onChange={(e) => setEmail(e.target.value)} />
-            <input type="text" placeholder={tipoPessoa === 'fisica' ? "CPF (000.000.000-00)" : "CNPJ (00.000.000/0000-00)"} required className="input-field text-gray-800" value={CPF} onChange={(e) => setCPF(e.target.value)} />
+            <input type="text" placeholder={tipoPessoa === 'fisica' ? "CPF (apenas numeros)" : "CNPJ (apenas numeros)"} required className="input-field text-gray-800" value={CPF} onChange={(e) => setCPF(e.target.value)} />
             <input type="tel" placeholder="Telefone (00) 00000-0000" pattern="\(?\d{2}\)?\s?\d{4,5}-?\d{4}" required className="input-field text-gray-800" value={telefone} onChange={(e) => setTelefone(e.target.value)} />
 
             <select required className="input-field text-gray-800" value={sexo} onChange={(e) => setSexo(e.target.value)}>
