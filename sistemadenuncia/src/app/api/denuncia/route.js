@@ -60,3 +60,4 @@ export async function POST(req) {
     return NextResponse.json({ error: 'Erro ao registrar a denúncia.' }, { status: 500 });
   }
 }
+  
