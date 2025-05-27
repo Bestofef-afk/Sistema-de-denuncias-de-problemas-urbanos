@@ -48,7 +48,7 @@ export async function POST(req) {
       `INSERT INTO denuncia 
         (nome, email, CPF, telefone, dataEnvio, endereco, bairro, descricao, imgUrl, CEP, complemento) 
        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
-      [nome,  email, CPF, telefone, dataEnvio, endereco, bairro, descricao, imageUrl, cep, complemento || null]
+      [nome, email, CPF, telefone, dataEnvio, endereco, bairro, descricao, imageUrl, cep, complemento || null]
     );
 
     return NextResponse.json(
@@ -58,5 +58,18 @@ export async function POST(req) {
   } catch (err) {
     console.error(err);
     return NextResponse.json({ error: 'Erro ao registrar a denúncia.' }, { status: 500 });
+  }
+}
+  
+
+export async function GET() {
+  try {
+    const [rows] = await db.query(
+      'SELECT idDenuncia, nome, email, CPF, telefone, dataEnvio,endereco, bairro, descricao, imgUrl, CEP, complemento FROM denuncia ORDER BY dataEnvio DESC'
+    );
+    return NextResponse.json(rows);
+  } catch (error) {
+    console.error('Erro ao buscar denúncias:', error);
+    return NextResponse.json({ error: 'Erro ao buscar denúncias' }, { status: 500 });
   }
 }
