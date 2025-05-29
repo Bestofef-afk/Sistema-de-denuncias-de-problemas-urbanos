@@ -69,4 +69,24 @@ alter table denuncia
 modify column CPF bigint,
 modify column telefone bigint;
 
+INSERT INTO denuncia (nome, email, CPF, telefone, dataEnvio, endereco, bairro, descricao, imgUrl, CEP, complemento)
+VALUES
+('Fernanda Lima Costa', 'fernanda.lima@email.com', '32112345600', '(55) 99933-0007', '2025-05-21', 'Rua São Pedro, 321', 'Bairro Rosário', 'A praça do Bairro Rosário está com brinquedos quebrados, oferecendo risco às crianças. Alguns balanços estão soltos e há ferrugem em várias estruturas.', 'uploads/imagem7.jpg', '97385000', 'Praça São Pedro'),
 
+('Bruno Henrique Duarte', 'bruno.duarte@email.com', '65498732100', '(55) 99922-0008', '2025-05-21', 'Avenida Sete de Setembro, 1010', 'Bairro Centro', 'Há um ponto de ônibus sem cobertura na Avenida Sete de Setembro. Passageiros ficam expostos ao sol e à chuva enquanto esperam o transporte público.', 'uploads/imagem8.jpg', '97340000', ''),
+
+('Larissa Mendes Rocha', 'larissa.rocha@email.com', '78945612300', '(55) 99911-0009', '2025-05-21', 'Rua Dom Pedro II, 45', 'Bairro Industrial', 'Fios elétricos soltos próximos a postes na Rua Dom Pedro II têm gerado medo entre os moradores. O risco de choque é evidente.', 'uploads/imagem9.jpg', '96570000', ''),
+
+('Tiago Silva Martins', 'tiago.martins@email.com', '14725836900', '(55) 99900-0010', '2025-05-21', 'Rua das Laranjeiras, 88', 'Bairro Bela Vista', 'O bueiro na Rua das Laranjeiras está entupido há semanas, causando alagamentos em dias de chuva forte.', 'uploads/imagem10.jpg', '97015000', 'Próximo ao número 90'),
+
+('Isabela Ferreira Pinto', 'isabela.pinto@email.com', '96385274100', '(55) 98888-0011', '2025-05-21', 'Travessa do Comércio, 12', 'Bairro São José', 'Comércio abandonado virou ponto de uso de drogas e insegurança na Travessa do Comércio. Moradores relatam medo de passar pelo local à noite.', 'uploads/imagem11.jpg', '97200000', ''),
+
+('Rodrigo Nunes Braga', 'rodrigo.braga@email.com', '85274196300', '(55) 98877-0012', '2025-05-21', 'Rua Benjamin Constant, 400', 'Bairro Passo do Verde', 'A ciclovia da Rua Benjamin Constant está completamente apagada. Sem pintura visível, motoristas invadem o espaço dos ciclistas.', 'uploads/imagem12.jpg', '97300000', '');
+
+CREATE TABLE admin (
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  email VARCHAR(255) NOT NULL UNIQUE,
+  senha VARCHAR(255) NOT NULL
+);
+
+INSERT INTO admin (email, senha) VALUES ('admin@site.com', '123456');	
