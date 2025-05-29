@@ -16,6 +16,12 @@ export default function LoginPage() {
         });
 
         if (res.ok) {
+            const data = await res.json();
+
+            if (data.isAdmin) {
+                localStorage.setItem('isAdmin', 'true');
+            }
+
             router.push('/pages/noticias');
         } else {
             alert('Credenciais inválidas');
