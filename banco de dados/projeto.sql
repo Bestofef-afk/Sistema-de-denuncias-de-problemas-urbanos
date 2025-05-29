@@ -65,9 +65,10 @@ drop database sistemaDenuncias;
 
 select * from denuncia;
 
-alter table denuncia 
-modify column CPF bigint,
-modify column telefone bigint;
+ALTER TABLE denuncia 
+MODIFY COLUMN CPF VARCHAR(50),
+MODIFY COLUMN telefone VARCHAR(50),
+MODIFY COLUMN complemento VARCHAR(50);
 
 INSERT INTO denuncia (nome, email, CPF, telefone, dataEnvio, endereco, bairro, descricao, imgUrl, CEP, complemento)
 VALUES
