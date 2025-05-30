@@ -5,7 +5,6 @@ import Footer from '@/components/Footer/page';
 
 export default function Home() {
   return (
-<<<<<<< HEAD
     <>
    <Header>
 
@@ -13,8 +12,5 @@ export default function Home() {
 
    <Footer></Footer>
     </>
-=======
-    <><h1>pagina inicial</h1></>
->>>>>>> 8672b3680c3c9b00cf293c1039280ecc6301b87a
   )
 }
