@@ -10,7 +10,7 @@ export default function Footer() {
         {/* Coluna 1: Logo / Brasão */}
         <div className="flex flex-col items-center md:items-start">
           <img
-            src="./img/logo-removebg-preview.png"
+            src="../img/logo-removebg-preview.png"
             alt="Brasão de Vila Nova do Sul"
             className="h-20 w-auto mb-2"
           />
