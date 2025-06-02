@@ -1,7 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
 import Busca from "@/components/Busca/page";
-import LanguageSelector from "@/components/LanguageSelector/page";
 
 export default function Header() {
   return (
@@ -10,7 +9,6 @@ export default function Header() {
         <div className="px-4 py-2 text-sm text-center md:text-left max-w-7xl mx-auto flex justify-between items-center">
           <span>De segunda a sexta, das 6h30min às 15h30min</span>
           <div className="flex-shrink-0">
-            <LanguageSelector />
           </div>
         </div>
 
