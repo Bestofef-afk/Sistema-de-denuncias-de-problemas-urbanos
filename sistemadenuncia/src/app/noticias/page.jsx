@@ -3,7 +3,7 @@
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
 
-export default function ListaDenuncias() {
+export default function ListaDenuncias({ limit = null }) {
     const [denuncias, setDenuncias] = useState([]);
     const [loading, setLoading] = useState(true);
     const [isAdmin, setIsAdmin] = useState(false);
@@ -24,7 +24,7 @@ export default function ListaDenuncias() {
             await fetch('/api/logout', { method: 'POST' });
             localStorage.removeItem('isAdmin');
             setIsAdmin(false);
-            router.push('/'); 
+            router.push('/');
         } catch (erro) {
             console.error('Erro ao fazer logout:', erro);
         }
@@ -46,7 +46,6 @@ export default function ListaDenuncias() {
         }
     };
 
-    // Função chamada no submit do formulário de edição
     const handleEditSubmit = async (e) => {
         e.preventDefault();
         const { idDenuncia, descricao, bairro, imgUrl } = denunciaEditando;
@@ -70,7 +69,6 @@ export default function ListaDenuncias() {
         }
     };
 
-    // Função para atualizar os dados no formulário conforme o usuário digita
     const handleChange = (campo, valor) => {
         setDenunciaEditando((prev) => ({
             ...prev,
@@ -78,7 +76,6 @@ export default function ListaDenuncias() {
         }));
     };
 
-    // Função para cancelar edição
     const handleCancel = () => {
         setDenunciaEditando(null);
     };
@@ -103,6 +100,9 @@ export default function ListaDenuncias() {
         setIsAdmin(adminFlag === 'true');
     }, []);
 
+    // Aplicando o limite se existir
+    const denunciasParaMostrar = limit ? denuncias.slice(0, limit) : denuncias;
+
     return (
         <main className="max-w-5xl mx-auto px-6 py-10 bg-white min-h-screen">
             <div className="flex justify-between items-center mb-8">
@@ -117,13 +117,13 @@ export default function ListaDenuncias() {
             </div>
 
             {loading && <p>Carregando denúncias...</p>}
-            {!loading && denuncias.length === 0 && (
+            {!loading && denunciasParaMostrar.length === 0 && (
                 <p className="text-center text-gray-500 text-base py-16 select-none">Nenhuma denúncia encontrada.</p>
             )}
 
-            {!loading && denuncias.length > 0 && (
+            {!loading && denunciasParaMostrar.length > 0 && (
                 <section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    {denuncias.map((denuncia) => (
+                    {denunciasParaMostrar.map((denuncia) => (
                         <div
                             key={denuncia.idDenuncia}
                             className="border border-gray-300 rounded-md overflow-hidden hover:border-[#11703B] transition-colors"

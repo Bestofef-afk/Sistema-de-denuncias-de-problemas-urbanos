@@ -1,7 +1,5 @@
 'use client';
-import { useState } from 'react';
-import Header from '@/components/Header/page';
-import Footer from '@/components/Footer/page';
+
 import Funcionario from './pages/funcionarios/page';
 import ListaDenuncias from './noticias/page';
 
@@ -9,8 +7,7 @@ export default function Home() {
   return (
     <>
       <Funcionario />
-
-      {/* Mostrar só 4 */}
+      {/* Mostrar só 4 denúncias na página inicial */}
       <div className="flex items-center mb-8 space-x-3">
         <h1 className="text-3xl font-semibold text-[#11703B]">Denúncias Recentes</h1>
         <a
@@ -20,9 +17,9 @@ export default function Home() {
           Ver Mais
         </a>
       </div>
-      <div className="sm:max-h-[860px] md:max-h-[890px] lg:max-h-[940px] overflow-hidden">
-        <ListaDenuncias />
+      <div className="overflow-hidden">
+        <ListaDenuncias limit={6} />
       </div>
     </>
-  )
+  );
 }
