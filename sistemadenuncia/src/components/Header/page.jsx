@@ -7,9 +7,13 @@ export default function Header() {
   return (
     <div className="font-sans bg-[#F7F6F2] min-h-screen text-[#1C1C1C]">
       <header className="bg-gradient-to-r from-[#11703B] to-[#199950] text-white shadow-md">
-      <div className="px-4 py-2 text-sm text-center md:text-left max-w-7xl mx-auto">
-        De segunda a sexta, das 6h30min às 15h30min
-      </div>
+        <div className="px-4 py-2 text-sm text-center md:text-left max-w-7xl mx-auto flex justify-between items-center">
+          <span>De segunda a sexta, das 6h30min às 15h30min</span>
+          <div className="flex-shrink-0">
+            <LanguageSelector />
+          </div>
+        </div>
+
         <div className="px-4 py-4 flex flex-col sm:flex-row items-center justify-between gap-4 max-w-7xl mx-auto w-full">
           
           {/* Logo + Busca ocupando a maior parte */}
