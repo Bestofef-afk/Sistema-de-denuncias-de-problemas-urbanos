@@ -5,7 +5,7 @@ import LanguageSelector from "@/components/LanguageSelector/page";
 
 export default function Header() {
   return (
-    <div className="font-sans bg-[#F7F6F2] min-h-screen text-[#1C1C1C]">
+    <div className="font-sans bg-[#F7F6F2] text-[#1C1C1C]">
       <header className="bg-gradient-to-r from-[#11703B] to-[#199950] text-white shadow-md">
       <div className="px-4 py-4 flex flex-col sm:flex-row items-center justify-between gap-4 max-w-7xl mx-auto w-full">
   {/* Logo + Busca ocupando a maior parte */}
