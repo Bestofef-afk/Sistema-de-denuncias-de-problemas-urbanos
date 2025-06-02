@@ -22,7 +22,7 @@ export default function LoginPage() {
                 localStorage.setItem('isAdmin', 'true');
             }
 
-            router.push('/pages/noticias');
+            router.push('/noticias');
         } else {
             alert('Credenciais inválidas');
         }
