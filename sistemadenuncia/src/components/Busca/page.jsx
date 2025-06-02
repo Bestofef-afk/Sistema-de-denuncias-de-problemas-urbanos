@@ -15,17 +15,6 @@ export default function Busca() {
 
   return (
     <form onSubmit={handleSubmit} className="w-full max-w-4xl flex gap-2 items-center" aria-label="Formulário de busca">
-      <button
-        type="button"
-        className="flex-shrink-0 inline-flex items-center px-4 py-2 text-sm font-medium text-white bg-green-900 rounded-md hover:bg-green-950 transition-transform duration-150 hover:scale-105"
-        aria-label="Filtrar por todas as categorias"
-      >
-        Todas as categorias
-        <svg className="w-3 h-3 ml-2" fill="none" viewBox="0 0 10 6">
-          <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="m1 1 4 4 4-4" />
-        </svg>
-      </button>
-
       <div className="flex w-full rounded-md overflow-hidden border border-green-900 bg-white">
         <input
           type="search"
