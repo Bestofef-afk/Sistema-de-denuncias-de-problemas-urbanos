@@ -36,18 +36,13 @@ export default function Header() {
           </div>
 
           {/* Botões */}
-          <div className="flex gap-2">
+          <div className="flex flex-col sm:flex-row items-center gap-3 p-4">
+            <p className="text-sm text-red-600 font-semibold tracking-tight">Você é admin?</p>
             <Link
-              href="/login"
-              className="px-5 py-2 bg-[#11703B] text-white rounded-md text-sm font-medium hover:bg-[#0e5e33] transition"
+              href="/pages/login"
+              className="px-6 py-2 bg-[#11703B] text-white rounded-full text-sm font-medium hover:bg-[#0e5e33] transition duration-200 shadow-sm hover:shadow-md"
             >
               Login
-            </Link>
-            <Link
-              href="/cadastro"
-              className="px-5 py-2 bg-white border border-[#11703B] text-[#11703B] rounded-md text-sm font-medium hover:bg-gray-100 transition"
-            >
-              Cadastro
             </Link>
           </div>
         </div>
@@ -58,10 +53,10 @@ export default function Header() {
         <div className="container mx-auto px-4">
           <div className="flex justify-center items-center h-14">
             <div className="flex flex-wrap justify-center gap-6 text-sm font-medium text-[#444]">
-              <Link href="#" className="hover:text-[#11703B] hover:underline transition">Início</Link>
-              <Link href="#" className="hover:text-[#11703B] hover:underline transition">Denúncias</Link>
-              <Link href="#" className="hover:text-[#11703B] hover:underline transition">Outras Denúncias</Link>
-              <Link href="#" className="hover:text-[#11703B] hover:underline transition">Contato</Link>
+              <Link href="/" className="hover:text-[#11703B] hover:underline transition">Início</Link>
+              <Link href="/pages/formulario" className="hover:text-[#11703B] hover:underline transition">Envio Denúncia</Link>
+              <Link href="/noticias" className="hover:text-[#11703B] hover:underline transition">Outras Denúncias</Link>
+              <Link href="/pages/contato" className="hover:text-[#11703B] hover:underline transition">Contato</Link>
             </div>
           </div>
         </div>

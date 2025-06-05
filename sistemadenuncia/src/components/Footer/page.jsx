@@ -1,6 +1,7 @@
 'use client';
 
 import { FaFacebookF, FaInstagram, FaYoutube } from 'react-icons/fa';
+import Link from 'next/link';
 
 export default function Footer() {
   return (
@@ -34,12 +35,21 @@ export default function Footer() {
         <div>
           <h4 className="text-white font-semibold mb-2">Links úteis</h4>
           <ul className="text-sm text-gray-300 space-y-1">
-            <li href="#" className="hover:text-white transition-colors duration-200">Início</li>
-            <li href="#" className="hover:text-white transition-colors duration-200">Denúncias</li>
-            <li href="#" className="hover:text-white transition-colors duration-200">Outras Denúncias</li>
-            <li href="#" className="hover:text-white transition-colors duration-200">Contato</li>
+            <li>
+              <Link href="/" className="hover:text-white transition-colors duration-200">Início</Link>
+            </li>
+            <li>
+              <Link href="/pages/formulario" className="hover:text-white transition-colors duration-200">Envio Denúncia</Link>
+            </li>
+            <li>
+              <Link href="/noticias" className="hover:text-white transition-colors duration-200">Outras Denúncias</Link>
+            </li>
+            <li>
+              <Link href="/pages/contato" className="hover:text-white transition-colors duration-200">Contato</Link>
+            </li>
           </ul>
         </div>
+
 
         {/* Coluna 4: Redes sociais */}
         <div>
