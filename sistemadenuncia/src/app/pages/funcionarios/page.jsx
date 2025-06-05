@@ -104,12 +104,6 @@ export default function Funcionario() {
                         <p className="text-sm mb-4 text-[#444444]">
                             {func.telefone}
                         </p>
-                        <a
-                            href={`mailto:${func.emailGovernamental}?subject=Denúncia de Irregularidade&body=Venho por meio deste...`}
-                            className="text-sm font-medium text-[#199950] underline hover:text-[#11703B] transition-colors duration-200 mt-auto"
-                        >
-                            Enviar e-mail
-                        </a>
                     </div>
                 ))}
             </div>
