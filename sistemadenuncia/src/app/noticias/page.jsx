@@ -39,7 +39,7 @@ export default function ListaDenuncias({ limit = null }) {
             if (res.ok) {
                 setDenuncias(prev => prev.filter(d => d.idDenuncia !== id));
             } else {
-                console.error('Erro ao deletar');
+                alert('Erro ao deletar');
             }
         } catch (err) {
             console.error('Erro na requisição de delete:', err);
@@ -62,7 +62,7 @@ export default function ListaDenuncias({ limit = null }) {
                 setDenuncias(denuncias.map(d => (d.idDenuncia === idDenuncia ? novas : d)));
                 setDenunciaEditando(null);
             } else {
-                console.error('Erro ao atualizar');
+                alert('Erro ao atualizar');
             }
         } catch (err) {
             console.error('Erro na atualização:', err);
