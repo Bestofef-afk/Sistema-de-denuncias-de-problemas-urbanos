@@ -1,6 +1,5 @@
 'use client';
-
-import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 
 export default function ListaDenuncias({ limit = null }) {
@@ -18,6 +17,8 @@ export default function ListaDenuncias({ limit = null }) {
             return 'Data inválida';
         }
     };
+
+    const router = useRouter();
 
     const handleLogout = async () => {
         try {
@@ -52,7 +53,7 @@ export default function ListaDenuncias({ limit = null }) {
 
         try {
             const res = await fetch(`/api/denuncia/${idDenuncia}`, {
-                method: 'PUT',
+                method: 'PATCH', // aqui trocado para PATCH
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ descricao, bairro, imgUrl }),
             });
@@ -100,7 +101,6 @@ export default function ListaDenuncias({ limit = null }) {
         setIsAdmin(adminFlag === 'true');
     }, []);
 
-    // Aplicando o limite se existir
     const denunciasParaMostrar = limit ? denuncias.slice(0, limit) : denuncias;
 
     return (
@@ -175,20 +175,19 @@ export default function ListaDenuncias({ limit = null }) {
                 </section>
             )}
 
-            {/* Formulário de edição */}
             {denunciaEditando && (
                 <div className="fixed inset-0 bg-opacity-30 backdrop-blur-sm flex items-center justify-center z-50">
                     <form
                         onSubmit={handleEditSubmit}
-                        className="bg-white p-6 rounded shadow-md w-full max-w-lg"
+                        className="bg-white p-6 rounded shadow-md w-full max-w-lg text-black" 
                     >
                         <h2 className="text-xl font-bold mb-4 text-[#11703B]">Editar Denúncia</h2>
 
                         <label className="block mb-2">
                             Descrição:
                             <textarea
-                                className="w-full border  h-[130px] p-4 mt-1"
-                                value={denunciaEditando.descricao}
+                                className="w-full border h-[130px] p-4 mt-1"
+                                value={denunciaEditando.descricao ?? ''}
                                 onChange={(e) => handleChange('descricao', e.target.value)}
                                 required
                             />
@@ -199,7 +198,7 @@ export default function ListaDenuncias({ limit = null }) {
                             <input
                                 type="text"
                                 className="w-full border p-2 mt-1"
-                                value={denunciaEditando.bairro}
+                                value={denunciaEditando.bairro ?? ''}
                                 onChange={(e) => handleChange('bairro', e.target.value)}
                                 required
                             />
@@ -210,7 +209,7 @@ export default function ListaDenuncias({ limit = null }) {
                             <input
                                 type="text"
                                 className="w-full border p-2 mt-1"
-                                value={denunciaEditando.imgUrl || ''}
+                                value={denunciaEditando.imgUrl ?? ''}
                                 onChange={(e) => handleChange('imgUrl', e.target.value)}
                             />
                         </label>
