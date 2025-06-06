@@ -1,9 +1,8 @@
 'use client';
-
-import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 
-export default function ListaDenuncias() {
+export default function ListaDenuncias({ limit = null }) {
     const [denuncias, setDenuncias] = useState([]);
     const [loading, setLoading] = useState(true);
     const [isAdmin, setIsAdmin] = useState(false);
@@ -19,12 +18,14 @@ export default function ListaDenuncias() {
         }
     };
 
+    const router = useRouter();
+
     const handleLogout = async () => {
         try {
             await fetch('/api/logout', { method: 'POST' });
             localStorage.removeItem('isAdmin');
             setIsAdmin(false);
-            router.push('/'); 
+            router.push('/');
         } catch (erro) {
             console.error('Erro ao fazer logout:', erro);
         }
@@ -39,21 +40,20 @@ export default function ListaDenuncias() {
             if (res.ok) {
                 setDenuncias(prev => prev.filter(d => d.idDenuncia !== id));
             } else {
-                console.error('Erro ao deletar');
+                alert('Erro ao deletar');
             }
         } catch (err) {
             console.error('Erro na requisição de delete:', err);
         }
     };
 
-    // Função chamada no submit do formulário de edição
     const handleEditSubmit = async (e) => {
         e.preventDefault();
         const { idDenuncia, descricao, bairro, imgUrl } = denunciaEditando;
 
         try {
             const res = await fetch(`/api/denuncia/${idDenuncia}`, {
-                method: 'PUT',
+                method: 'PATCH', // aqui trocado para PATCH
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ descricao, bairro, imgUrl }),
             });
@@ -63,14 +63,13 @@ export default function ListaDenuncias() {
                 setDenuncias(denuncias.map(d => (d.idDenuncia === idDenuncia ? novas : d)));
                 setDenunciaEditando(null);
             } else {
-                console.error('Erro ao atualizar');
+                alert('Erro ao atualizar');
             }
         } catch (err) {
             console.error('Erro na atualização:', err);
         }
     };
 
-    // Função para atualizar os dados no formulário conforme o usuário digita
     const handleChange = (campo, valor) => {
         setDenunciaEditando((prev) => ({
             ...prev,
@@ -78,7 +77,6 @@ export default function ListaDenuncias() {
         }));
     };
 
-    // Função para cancelar edição
     const handleCancel = () => {
         setDenunciaEditando(null);
     };
@@ -103,6 +101,8 @@ export default function ListaDenuncias() {
         setIsAdmin(adminFlag === 'true');
     }, []);
 
+    const denunciasParaMostrar = limit ? denuncias.slice(0, limit) : denuncias;
+
     return (
         <main className="max-w-5xl mx-auto px-6 py-10 bg-white min-h-screen">
             <div className="flex justify-between items-center mb-8">
@@ -117,13 +117,13 @@ export default function ListaDenuncias() {
             </div>
 
             {loading && <p>Carregando denúncias...</p>}
-            {!loading && denuncias.length === 0 && (
+            {!loading && denunciasParaMostrar.length === 0 && (
                 <p className="text-center text-gray-500 text-base py-16 select-none">Nenhuma denúncia encontrada.</p>
             )}
 
-            {!loading && denuncias.length > 0 && (
+            {!loading && denunciasParaMostrar.length > 0 && (
                 <section className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    {denuncias.map((denuncia) => (
+                    {denunciasParaMostrar.map((denuncia) => (
                         <div
                             key={denuncia.idDenuncia}
                             className="border border-gray-300 rounded-md overflow-hidden hover:border-[#11703B] transition-colors"
@@ -175,20 +175,19 @@ export default function ListaDenuncias() {
                 </section>
             )}
 
-            {/* Formulário de edição */}
             {denunciaEditando && (
                 <div className="fixed inset-0 bg-opacity-30 backdrop-blur-sm flex items-center justify-center z-50">
                     <form
                         onSubmit={handleEditSubmit}
-                        className="bg-white p-6 rounded shadow-md w-full max-w-lg"
+                        className="bg-white p-6 rounded shadow-md w-full max-w-lg text-black" 
                     >
                         <h2 className="text-xl font-bold mb-4 text-[#11703B]">Editar Denúncia</h2>
 
                         <label className="block mb-2">
                             Descrição:
                             <textarea
-                                className="w-full border  h-[130px] p-4 mt-1"
-                                value={denunciaEditando.descricao}
+                                className="w-full border h-[130px] p-4 mt-1"
+                                value={denunciaEditando.descricao ?? ''}
                                 onChange={(e) => handleChange('descricao', e.target.value)}
                                 required
                             />
@@ -199,7 +198,7 @@ export default function ListaDenuncias() {
                             <input
                                 type="text"
                                 className="w-full border p-2 mt-1"
-                                value={denunciaEditando.bairro}
+                                value={denunciaEditando.bairro ?? ''}
                                 onChange={(e) => handleChange('bairro', e.target.value)}
                                 required
                             />
@@ -210,7 +209,7 @@ export default function ListaDenuncias() {
                             <input
                                 type="text"
                                 className="w-full border p-2 mt-1"
-                                value={denunciaEditando.imgUrl || ''}
+                                value={denunciaEditando.imgUrl ?? ''}
                                 onChange={(e) => handleChange('imgUrl', e.target.value)}
                             />
                         </label>

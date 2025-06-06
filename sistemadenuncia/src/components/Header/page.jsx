@@ -1,60 +1,62 @@
 import Link from "next/link";
 import Image from "next/image";
-import Busca from "@/components/Busca/page";
 
 export default function Header() {
   return (
     <div className="font-sans bg-[#F7F6F2] text-[#1C1C1C]">
-      <header className="bg-gradient-to-r from-[#11703B] to-[#199950] text-white shadow-md">
-        <div className="px-4 py-2 text-sm text-center md:text-left max-w-7xl mx-auto flex justify-between items-center">
-          <span>De segunda a sexta, das 6h30min às 15h30min</span>
-          <div className="flex-shrink-0">
-          </div>
+      <div className="bg-gradient-to-r from-[#11703B] to-[#199950] text-white text-sm">
+        <div className="container mx-auto px-4 py-2 flex justify-center items-center">
+          <span>Segunda a sexta, das 5h a 23h59</span>
         </div>
-
-        <div className="px-4 py-4 flex flex-col sm:flex-row items-center justify-between gap-4 max-w-7xl mx-auto w-full">
-          
-          {/* Logo + Busca ocupando a maior parte */}
-          <div className="flex items-center gap-4 flex-1 min-w-0">
+      </div>
+      {/* Cabeçalho principal */}
+      <header className="bg-white shadow-sm">
+        <div className="container mx-auto px-4 py-6 flex flex-col md:flex-row items-center justify-between gap-6">
+          {/* Brasão + Nome da cidade + Descrição */}
+          <div className="flex items-center gap-4">
             <Image
               src="/img/logo-removebg-preview.png"
               alt="Brasão de Vila Nova do Sul"
-              width={64}
-              height={64}
-              className="h-16 w-auto drop-shadow-lg flex-shrink-0"
+              width={80}
+              height={80}
+              className="h-20 w-auto drop-shadow-md"
               loading="lazy"
             />
-            <div className="w-full">
-              <Busca />
+            <div className="text-[#11703B] max-w-xs">
+              <h1 className="text-2xl md:text-3xl font-bold leading-tight">
+                Prefeitura Municipal
+              </h1>
+              <p className="text-sm md:text-base font-medium">
+                Vila Nova do Sul - RS
+              </p>
+              <p className="mt-1 text-xs md:text-sm text-gray-600">
+                Site oficial para denunciar problemas no município
+              </p>
             </div>
           </div>
 
-          {/* Botões de Login e Cadastro */}
-          <div className="flex-shrink-0 flex gap-2">
+          {/* Botões */}
+          <div className="flex flex-col sm:flex-row items-center gap-3 p-4">
+            <p className="text-sm text-red-600 font-semibold tracking-tight">Você é admin?</p>
             <Link
-              href="/login"
-              className="px-4 py-2 bg-white text-[#11703B] rounded-md font-medium text-sm hover:bg-gray-100 shadow"
+              href="/pages/login"
+              className="px-6 py-2 bg-[#11703B] text-white rounded-full text-sm font-medium hover:bg-[#0e5e33] transition duration-200 shadow-sm hover:shadow-md"
             >
               Login
-            </Link>
-            <Link
-              href="/cadastro"
-              className="px-4 py-2 bg-white text-[#11703B] rounded-md font-medium text-sm hover:bg-gray-100 shadow"
-            >
-              Cadastro
             </Link>
           </div>
         </div>
       </header>
 
-      <nav className="bg-white border-b border-[#E1E3DE] shadow-sm sticky top-0 z-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      {/* Navegação */}
+      <nav className="bg-white border-t border-b border-[#E1E3DE] shadow-sm sticky top-0 z-50">
+        <div className="container mx-auto px-4">
           <div className="flex justify-center items-center h-14">
-            <div className="flex flex-wrap justify-center gap-4 text-sm font-medium text-[#444444] py-2">
-              <Link href="#" className="hover:text-[#11703B] transition-colors duration-200 hover:underline">Início</Link>
-              <Link href="#" className="hover:text-[#11703B] transition-colors duration-200 hover:underline">Denúncias</Link>
-              <Link href="#" className="hover:text-[#11703B] transition-colors duration-200 hover:underline">Outras Denúncias</Link>
-              <Link href="#" className="hover:text-[#11703B] transition-colors duration-200 hover:underline">Contato</Link>
+            <div className="flex flex-wrap justify-center gap-6 text-sm font-medium text-[#444]">
+              <Link href="/" className="hover:text-[#11703B] hover:underline transition">Início</Link>
+              <Link href="/pages/formulario" className="hover:text-[#11703B] hover:underline transition">Envio Denúncia</Link>
+              <Link href="/noticias" className="hover:text-[#11703B] hover:underline transition">Outras Denúncias</Link>
+              <Link href="/pages/contato" className="hover:text-[#11703B] hover:underline transition">Contato</Link>
             </div>
           </div>
         </div>
