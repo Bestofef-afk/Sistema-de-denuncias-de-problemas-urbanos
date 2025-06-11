@@ -16,7 +16,7 @@ export default function Footer() {
             className="h-20 w-auto mb-2"
           />
           <p className="text-sm text-gray-400 text-center md:text-left">
-            Prefeitura Municipal de Vila Nova do Sul
+            Prefeitura Municipal de Vila Nova do Norte
           </p>
         </div>
 
@@ -25,9 +25,9 @@ export default function Footer() {
           <h4 className="text-white font-semibold mb-2">Contato</h4>
           <ul className="text-sm text-gray-300 space-y-1">
             <li>Av. Cel. Marcos de Andrade, 206</li>
-            <li>Centro, Vila Nova do Sul - RS</li>
+            <li>Centro, Vila Nova do Norte- RS</li>
             <li>Telefone: (55) 3234-1133</li>
-            <li>Email: contato@vilanovadosul.rs.gov.br</li>
+            <li>Email: contato@vilanovadonorte.rs.gov.br</li>
           </ul>
         </div>
 
@@ -65,7 +65,7 @@ export default function Footer() {
       {/* Linha final */}
       <div className="border-t border-gray-800 mt-6 pt-4 text-center text-sm text-gray-500">
         <p>
-          &copy; {new Date().getFullYear()} Prefeitura Municipal de Vila Nova do Sul. Todos os direitos reservados.
+          &copy; {new Date().getFullYear()} Prefeitura Municipal de Vila Nova do Norte. Todos os direitos reservados.
         </p>
         <p>Desenvolvido pelo Setor de Tecnologia da Informação</p>
       </div>

@@ -33,7 +33,7 @@ export default function Header() {
               <h1 className="text-xl sm:text-2xl md:text-3xl font-bold leading-tight">
                 Prefeitura Municipal
               </h1>
-              <p className="text-xs sm:text-sm font-medium">Vila Nova do Sul - RS</p>
+              <p className="text-xs sm:text-sm font-medium">Vila Nova do Norte - RS</p>
               <p className="mt-1 text-[10px] sm:text-xs text-gray-600">
                 Site oficial para denunciar problemas no município
               </p>
